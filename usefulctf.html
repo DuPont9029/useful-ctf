@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>titolo</title>
+    <script>
+    const arrowf = (nomefile) => {
+        
+    fetch(nomefile) 
+        .then(response => response.text())
+        .then(base64String => {
+            
+            const decodedBytes = atob(base64String);
+            let byteArray = new Uint8Array(decodedBytes.length);
+            for (let i =  0; i < decodedBytes.length; i++) {
+                byteArray[i] = decodedBytes.charCodeAt(i);
+            }
+
+            
+            const blob = new Blob([byteArray], {type: 'application/pdf'});
+
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'output.pdf';
+            link.click();
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    </script>
+
+
+
+    <style>
+        body {
+            background: #333;
+            padding-top: 5em;
+            display: flex;
+            justify-content: center;
+            color: white;
+        } 
+
+        .typewriter h1 {
+            overflow: hidden; 
+            border-right: .15em solid orange;
+            white-space: nowrap; 
+            margin: 0 auto; 
+            letter-spacing: .15em; 
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+
+
+    </style>
+    
+  </head>
+
+  <body>
+    <div class="typewriter">
+        <h1>flag{d0_no7_w47ch_th3_p1c7ur3_ob53rv3_it}</h1>
+    </div>
+  </body>
+</html>
