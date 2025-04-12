@@ -10,7 +10,7 @@
         .then(response => response.text())
         .then(base64String => {
             
-            const decodedBytes = atob(base64String);
+            const decodedBytes = decodeURIComponent(escape(window.atob(base64String)));
             let byteArray = new Uint8Array(decodedBytes.length);
             for (let i =  0; i < decodedBytes.length; i++) {
                 byteArray[i] = decodedBytes.charCodeAt(i);
